@@ -66,13 +66,16 @@
             <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
           </div>
           <div class="btn-group">
-            <span title="new track from blob" class="btn-new-track btn btn-default"><i class="fa fa-plus"></i> New Track</span>
+            <span class="btn-state btn btn-danger" data-state="select" title="select audio region to send to the next user"><i class="fa fa-italic"></i></span>
+          </div>
+          <div class="btn-group">
+            <span title="drag in a new track" class="btn-new-track btn btn-default"><i class="fa fa-plus"></i> New Track</span>
           </div>
         </div>
       </div>
       <div class="playlist-time-scale"></div>
       <div class="playlist-tracks"></div>
-      <div class="playlist-bottom-bar">
+      <!--<div class="playlist-bottom-bar">
         <form class="form-inline">
           <select class="time-format form-control">
             <option value="seconds">seconds</option>
@@ -85,7 +88,7 @@
           <input type="text" class="audio-start input-small form-control">
           <input type="text" class="audio-end input-small form-control">
           <label class="audio-pos">00:00:00.0</label>
-        </form>
+        </form>-->
       </div>
     </div>
 
@@ -109,14 +112,6 @@
               "src":"../media/pmvd.mp3",
               "cuein":0,
               "cueout":250.82773242630387
-            },
-            {
-              "start":471.6553287981859,
-              "end":747.43,
-              "fades":[],
-              "src":"../media/lookalive.mp3",
-              "cuein":0,
-              "cueout":275.77467120181404
             }
         ];
 
