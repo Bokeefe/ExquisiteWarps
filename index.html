@@ -30,7 +30,10 @@
 
   </head>
   <body>
-    <h1>Exquisite Corpse Beta AF</h1>
+    <div class="topper">
+      <h1 class="topperh1">Exquisite Corpse Beta AF</h1>
+      <textarea class="form-control" rows="1">Tell the next user what we are trying to do here--></textarea>
+    </div>
     <div id="playlist" class="playlist">
       <div id="top-bar" class="playlist-top-bar">
         <div class="playlist-toolbar">
@@ -91,6 +94,10 @@
         </form>-->
       </div>
     </div>
+    <h3>Use the red cursor to cue where the next user can hear this track (keep it mysterious)</h3>
+    <h3>NEXT USER EMAIL:</h3><textarea class="form-control">email@here</textarea>
+    <button class="form-control">send</button>
+
 
     <script type="text/javascript">
     (function(){
@@ -123,11 +130,12 @@
             timescale: true,
             controls: {
                 show: true, //whether or not to include the track controls
-                width: 200, //width of controls in pixels
+                width: 100, //width of controls in pixels
+                height:100 
             },
             UITheme: "bootstrap",
             state: 'select',
-            waveOutlineColor: '#E0EFF1'
+            waveOutlineColor: '#FDCEEF'
         });  
 
         var playlistEditor = Object.create(WaveformPlaylist, {

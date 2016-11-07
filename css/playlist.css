@@ -1,7 +1,16 @@
 html, body {
   height: 95%;
   margin: 5%;
-  background-color: #8F35FC;
+  background-color: #EBDEF0;
+}
+
+.topperh1 {
+  width: 50%;
+}
+
+.form-control {
+  width: 50%;
+  margin-left: 50%;
 }
 
 .playlist {
@@ -17,7 +26,7 @@ html, body {
 }
 
 .channel {
-  background: black;
+  background: #FDCEEF;
 }
 
 .channel-progress {
@@ -90,6 +99,7 @@ html, body {
   background-color: blueviolet;
   margin-bottom: 1em;
 }
+
 
 .controls label {
   margin: 1em auto;
