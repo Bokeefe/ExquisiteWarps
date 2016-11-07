@@ -22,11 +22,11 @@ html, body {
 }
 
 .playlist-tracks {
-  background: #8F35FC;
+  background: white;
 }
 
 .channel {
-  background: #FDCEEF;
+  background: #7D3C98;
 }
 
 .channel-progress {
