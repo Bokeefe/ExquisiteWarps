@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>ExquisiteWarps beta AF</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="../css/playlist.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="../js/waveform_playlist.js"></script>
+    <script type="text/javascript" src="../js/waveform/mixins/mixin.js"></script>
+    <script type="text/javascript" src="../js/waveform/mixins/observer.js"></script>
+    <script type="text/javascript" src="../js/waveform/mixins/conversions.js"></script>
+    <script type="text/javascript" src="../js/waveform/mixins/curves.js"></script>
+    <script type="text/javascript" src="../js/waveform/states/file_drop.js"></script>
+    <script type="text/javascript" src="../js/waveform/states/cursor.js"></script>
+    <script type="text/javascript" src="../js/waveform/states/fadein.js"></script>
+    <script type="text/javascript" src="../js/waveform/states/fadeout.js"></script>
+    <script type="text/javascript" src="../js/waveform/states/select.js"></script>
+    <script type="text/javascript" src="../js/waveform/states/shift.js"></script>
+    <script type="text/javascript" src="../js/waveform/local_storage.js"></script>
+    <script type="text/javascript" src="../js/waveform/config.js"></script>
+    <script type="text/javascript" src="../js/waveform/track_render.js"></script>
+    <script type="text/javascript" src="../js/waveform/fades.js"></script>
+    <script type="text/javascript" src="../js/waveform/playout.js"></script>
+    <script type="text/javascript" src="../js/waveform/track.js"></script>
+    <script type="text/javascript" src="../js/waveform/time_scale.js"></script>
+    <script type="text/javascript" src="../js/waveform/controls.js"></script>
+
+  </head>
+  <body>
+    <h1>Exquisite Corpse Beta AF</h1>
+    <div id="playlist" class="playlist">
+      <div id="top-bar" class="playlist-top-bar">
+        <div class="playlist-toolbar">
+          <div class="btn-group">
+            <span title="restore playlist" class="btn-open btn btn-default"><i class="fa fa-folder-open"></i></span>
+            <span title="save playlist" class="btn-save btn btn-default"><i class="fa fa-floppy-o"></i></span>
+          </div>
+          <div class="btn-group">
+            <span class="btn-pause btn btn-default"><i class="fa fa-pause"></i></span>
+            <span class="btn-play btn btn-default"><i class="fa fa-play"></i></span>
+            <span class="btn-stop btn btn-default"><i class="fa fa-stop"></i></span>
+            <span class="btn-rewind btn btn-default"><i class="fa fa-fast-backward"></i></span>
+            <span class="btn-fast-forward btn btn-default"><i class="fa fa-fast-forward"></i></span>
+          </div>
+          <div class="btn-group">
+            <span class="btn-state btn btn-default" data-state="cursor" title="select cursor"><i class="fa fa-headphones"></i></span>
+            <span class="btn-state btn btn-default" data-state="select" title="select audio region"><i class="fa fa-italic"></i></span>
+            <span class="btn-state btn btn-default" data-state="shift" title="shift audio in time"><i class="fa fa-arrows-h"></i></span>
+            <span class="btn-state btn btn-default" data-state="fadein" title="set audio fade in"><i class="fa fa-long-arrow-left"></i></span>
+            <span class="btn-state btn btn-default" data-state="fadeout" title="set audio fade out"><i class="fa fa-long-arrow-right"></i></span>
+          </div>
+          <!--<div class="btn-group">
+            <span class="btn btn-default btn-fade" data-fade="logarithmic">logarithmic</span>
+            <span class="btn btn-default btn-fade" data-fade="linear">linear</span>
+            <span class="btn btn-default btn-fade" data-fade="exponential">exponential</span>
+            <span class="btn btn-default btn-fade" data-fade="sCurve">s-curve</span>
+          </div>-->
+          <div id="btns_audio_tools" class="btn-group">
+            <span title="keep only the selected audio region" class="btn-trim-audio btn btn-default disabled">Crop Audio Track</span>
+          </div>
+          <div class="btn-group">
+            <span title="zoom in" class="btn-zoom-in btn btn-default"><i class="fa fa-search-plus"></i></span>
+            <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
+          </div>
+          <div class="btn-group">
+            <span title="new track from blob" class="btn-new-track btn btn-default"><i class="fa fa-plus"></i> New Track</span>
+          </div>
+        </div>
+      </div>
+      <div class="playlist-time-scale"></div>
+      <div class="playlist-tracks"></div>
+      <div class="playlist-bottom-bar">
+        <form class="form-inline">
+          <select class="time-format form-control">
+            <option value="seconds">seconds</option>
+            <option value="thousandths">thousandths</option>
+            <option value="hh:mm:ss">hh:mm:ss</option>
+            <option value="hh:mm:ss.u">hh:mm:ss + tenths</option>
+            <option value="hh:mm:ss.uu">hh:mm:ss + hundredths</option>
+            <option value="hh:mm:ss.uuu">hh:mm:ss + milliseconds</option>
+          </select>
+          <input type="text" class="audio-start input-small form-control">
+          <input type="text" class="audio-end input-small form-control">
+          <label class="audio-pos">00:00:00.0</label>
+        </form>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    (function(){
+
+        var tracks = [
+            {
+              "start":0,
+              "end":235.83344671201814,
+              "fades":[],
+              "src":"../media/swag.mp3",
+              "cuein":0,
+              "cueout":235.83344671201814
+            },
+            {
+              "start":234.92063492063494,
+              "end":485.7483673469387,
+              "fades":[
+              ],
+              "src":"../media/pmvd.mp3",
+              "cuein":0,
+              "cueout":250.82773242630387
+            },
+            {
+              "start":471.6553287981859,
+              "end":747.43,
+              "fades":[],
+              "src":"../media/lookalive.mp3",
+              "cuein":0,
+              "cueout":275.77467120181404
+            }
+        ];
+
+        var config = new WaveformPlaylist.Config({
+            resolution: 10000,
+            mono: false,
+            waveHeight: 80,
+            container: document.getElementById("playlist"),
+            timescale: true,
+            controls: {
+                show: true, //whether or not to include the track controls
+                width: 200, //width of controls in pixels
+            },
+            UITheme: "bootstrap",
+            state: 'select',
+            waveOutlineColor: '#E0EFF1'
+        });  
+
+        var playlistEditor = Object.create(WaveformPlaylist, {
+          config: {
+            value: config
+          }
+        });
+        playlistEditor.init(tracks);
+
+    })();
+    </script>
+    <script>
+    </script>
+  </body>
+</html>
