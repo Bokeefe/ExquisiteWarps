@@ -15,7 +15,7 @@ WaveformPlaylist.Config = function(params) {
             ac: new (window.AudioContext || window.webkitAudioContext),
 
             resolution: 4096, //resolution - frames per pixel to draw.
-            minResolution: 500,
+            minResolution: 100,
             maxResolution: 20000,
             timeFormat: 'hh:mm:ss.uu',
             mono: true, //whether to draw multiple channels or combine them.

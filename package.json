@@ -1,7 +1,7 @@
 {
   "name": "Exquisite-Warps",
   "description": "Collaborative music and story platform",
-  "version": "0.0.0.1",
+  "private": true,
   "author": "Brendan O'Keefe",
   "license": "MIT",
   "website": "exquisitewarps.io",
@@ -10,6 +10,11 @@
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "~0.5.0"
+    "grunt-contrib-uglify": "~0.5.0",
+    "send": "0.13.x",
+    "express": "4.13.x",
+    "async": "0.7.x",
+    "morgan": "1.6.x",
+    "yargs": "4.4.x"
   }
 }
