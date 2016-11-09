@@ -95,7 +95,7 @@
       </div>
     </div>
     <h3>Use the red cursor to cue where the next user can hear this track (keep it mysterious)</h3>
-    <h3>NEXT USER EMAIL:</h3><textarea class="form-control">email@here</textarea>
+    <h3>NEXT USER EMAIL:</h3><textarea class="form-control">email@here.com</textarea>
     <button class="form-control">send</button>
 
 
@@ -105,24 +105,43 @@
         var tracks = [
             {
               "start":0,
-              "end":23,
+              "end":2,
               "fades":[],
               "src":"../media/one.wav",
               "cuein":0,
-              "cueout":235.83344671201814
+              "cueout":0
+            },{
+              "start":2,
+              "end":4,
+              "fades":[],
+              "src":"../media/two.wav",
+              "cuein":0,
+              "cueout":0
             },
             {
-              "start":2,
-              "end":485.7483673469387,
-              "fades":[
-              ],
+              "start":4,
+              "end":6,
+              "fades":[],
               "src":"../media/three.wav",
               "cuein":0,
-              "cueout":250.82773242630387
-            }
+              "cueout":0
+            },
         ];
+        var tracksLength = 0;
+        function scaleRes(arr){
+          for(var i in arr){
+              tracksLength = parseInt(arr[i].end);
+          }
+        }
+        scaleRes(tracks);
+        // function passNext (cursorPoint, arr) { // function for future button
+        //   for(var i in arr) {
+        //     tracks[i].start - cursorPoint;
+        //     tracks[i].end - cursorPoint;
+        //     }
+        // }
         var config = new WaveformPlaylist.Config({
-            resolution: 500,
+            resolution: tracksLength * 50,
             mono: false,
             waveHeight: 80,
             container: document.getElementById("playlist"),
