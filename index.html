@@ -74,6 +74,7 @@
           <div class="btn-group">
             <span title="drag in a new track" class="btn-new-track btn btn-default"><i class="fa fa-plus"></i> New Track</span>
           </div>
+              <button class="form-control" id="test">TEST</button>
         </div>
       </div>
       <div class="playlist-time-scale"></div>
@@ -101,7 +102,7 @@
     <script type="text/javascript">
 
     function test(){
-      $.post('/tracks') 
+      $.post('./tracks') 
         var tracks = playlistEditor.getJson();
     }
 

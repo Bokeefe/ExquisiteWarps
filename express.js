@@ -25,9 +25,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/tracks', (req, res) => { //I wrote this but is it what is supposed to happen?
-	console.log(req);
-	fs.writeFile('/tracks.json', "hey Dude Update", (err) => {
+
+	fs.writeFile('./public/tracks.json', "hey Dude Update", (err) => {
   		if (err) throw err;
+  			res.send("success");
   		console.log('It\'s saved!');
 	});
 });
