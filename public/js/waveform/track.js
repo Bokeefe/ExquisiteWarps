@@ -284,7 +284,7 @@ WaveformPlaylist.TrackEditor = {
         this.fire("activateSelection");
     },
 
-    deactivateAudioSelection: function() {
+    deactivateAudioSelection: function() {  // I need to use this eventually
 
         this.fire("deactivateSelection");
     },
@@ -526,7 +526,7 @@ WaveformPlaylist.TrackEditor = {
         this.drawer.updateProgress(this.secondsToPixels(cursorPos));
     },
 
-    showSelection: function() {
+    showSelection: function() { //I think we are working here
         var start,
             end;
 

@@ -34,10 +34,6 @@
 
   </head>
   <body>
-    <div class="topper">
-      <h1 class="topperh1">Exquisite Corpse Beta AF</h1>
-      <textarea class="form-control" rows="1">Tell the next user what we are trying to do here--></textarea>
-    </div>
     <div id="playlist" class="playlist">
       <div id="top-bar" class="playlist-top-bar">
         <div class="playlist-toolbar">
@@ -95,22 +91,31 @@
           <input type="text" class="audio-start input-small form-control">
           <input type="text" class="audio-end input-small form-control">
           <label class="audio-pos">00:00:00.0</label>
-        </form>-->
+        </form>
       </div>
     </div>
     <h3>Use the red cursor to cue where the next user can hear this track (keep it mysterious)</h3>
-    <h3>NEXT USER EMAIL:</h3><textarea class="form-control">email@here.com</textarea>
-    <button class="form-control">send</button>
-
+    <h3>NEXT USER EMAIL:</h3><textarea class="form-control">email@here.com</textarea>-->
+    <button class="form-control" id="test">TEST</button>
 
     <script type="text/javascript">
+
+    function test(){
+      $.post('/tracks') 
+        var tracks = playlistEditor.getJson();
+    }
+
+
+    $('#test').click(test);
+
     (function(){
 
       $.get(
         "./tracks.json",
         function( res ) {
+          console.log(res);
           $( ".result" ).html( res );
-          var tracks = res;
+          tracks = res;
           var tracksLength = 0;
           function scaleRes(arr){
             for(var i in arr){
@@ -121,38 +126,34 @@
 
           var config = new WaveformPlaylist.Config({
               resolution: tracksLength * 50,
-              mono: false,
-              waveHeight: 80,
+              mono: true,
+              waveHeight: 100,
               container: document.getElementById("playlist"),
               timescale: true,
               controls: {
                   show: true, //whether or not to include the track controls
                   width: 100, //width of controls in pixels
-                  height:100 
+                  height:200 
               },
               UITheme: "bootstrap",
               state: 'select',
               waveOutlineColor: 'white'
           });  
 
-          var playlistEditor = Object.create(WaveformPlaylist, {
+          playlistEditor = Object.create(WaveformPlaylist, { //making this a global variable is cheating
             config: {
               value: config
             }
           });
           playlistEditor.init(tracks);
-
-
         },
         'json'
       );
 
+//Event listener bound to TrackEvent takes data from playlistEditor.getJson to tracks.json
 
 
-
-// $(element).on("click mousedown mouseup focus blur keydown change",function(e){
-//      console.log(e);
-// });
+//playlistEditor.getJson();
 
 //monitorEvents(document.body);
 

@@ -1,4 +1,5 @@
 /* jshint esversion:6 */
+var fs = require("fs");
 var express = require('express');
 var session = require('express-session');
 var mongoose = require('mongoose');
@@ -20,13 +21,15 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
-	console.log("Did I get this far?");
 	res.sendFile(__dirname + '/index.html'); 
 });
 
-app.get('/tracks', (req, res) => {
-	 res.sendFile(__dirname + '/tracks.JSON');
-	console.log(res);
+app.post('/tracks', (req, res) => { //I wrote this but is it what is supposed to happen?
+	console.log(req);
+	fs.writeFile('/tracks.json', "hey Dude Update", (err) => {
+  		if (err) throw err;
+  		console.log('It\'s saved!');
+	});
 });
 
 ////////

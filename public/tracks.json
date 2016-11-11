@@ -1,6 +1,6 @@
 [
     {
-      "start":0,
+      "start":1.23,
       "end":1.4,
       "fades":[],
       "src":"../media/one.wav",
