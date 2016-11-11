@@ -27,6 +27,10 @@
     <script type="text/javascript" src="../js/waveform/track.js"></script>
     <script type="text/javascript" src="../js/waveform/time_scale.js"></script>
     <script type="text/javascript" src="../js/waveform/controls.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
 
   </head>
   <body>
@@ -102,68 +106,58 @@
     <script type="text/javascript">
     (function(){
 
-        var tracks = [
-            {
-              "start":0,
-              "end":2,
-              "fades":[],
-              "src":"../media/one.wav",
-              "cuein":0,
-              "cueout":0
-            },{
-              "start":2,
-              "end":4,
-              "fades":[],
-              "src":"../media/two.wav",
-              "cuein":0,
-              "cueout":0
-            },
-            {
-              "start":4,
-              "end":6,
-              "fades":[],
-              "src":"../media/three.wav",
-              "cuein":0,
-              "cueout":0
-            },
-        ];
-        var tracksLength = 0;
-        function scaleRes(arr){
-          for(var i in arr){
-              tracksLength = parseInt(arr[i].end);
+      $.get(
+        "./tracks.json",
+        function( res ) {
+          $( ".result" ).html( res );
+          var tracks = res;
+          var tracksLength = 0;
+          function scaleRes(arr){
+            for(var i in arr){
+                tracksLength = parseInt(arr[i].end);
+            }
           }
-        }
-        scaleRes(tracks);
-        // function passNext (cursorPoint, arr) { // function for future button
-        //   for(var i in arr) {
-        //     tracks[i].start - cursorPoint;
-        //     tracks[i].end - cursorPoint;
-        //     }
-        // }
-        var config = new WaveformPlaylist.Config({
-            resolution: tracksLength * 50,
-            mono: false,
-            waveHeight: 80,
-            container: document.getElementById("playlist"),
-            timescale: true,
-            controls: {
-                show: true, //whether or not to include the track controls
-                width: 100, //width of controls in pixels
-                height:100 
-            },
-            UITheme: "bootstrap",
-            state: 'select',
-            waveOutlineColor: 'white'
-        });  
+          scaleRes(tracks);
 
-        var playlistEditor = Object.create(WaveformPlaylist, {
-          config: {
-            value: config
-          }
-        });
-        playlistEditor.init(tracks);
+          var config = new WaveformPlaylist.Config({
+              resolution: tracksLength * 50,
+              mono: false,
+              waveHeight: 80,
+              container: document.getElementById("playlist"),
+              timescale: true,
+              controls: {
+                  show: true, //whether or not to include the track controls
+                  width: 100, //width of controls in pixels
+                  height:100 
+              },
+              UITheme: "bootstrap",
+              state: 'select',
+              waveOutlineColor: 'white'
+          });  
+
+          var playlistEditor = Object.create(WaveformPlaylist, {
+            config: {
+              value: config
+            }
+          });
+          playlistEditor.init(tracks);
+
+
+        },
+        'json'
+      );
+
+
+
+
+// $(element).on("click mousedown mouseup focus blur keydown change",function(e){
+//      console.log(e);
+// });
+
+//monitorEvents(document.body);
 
     })();
+
     </script>
     <script>
     </script>
