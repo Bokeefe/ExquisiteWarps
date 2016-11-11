@@ -24,9 +24,12 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html'); 
 });
 
-app.post('/tracks', (req, res) => { //I wrote this but is it what is supposed to happen?
+app.get('/tracks', (req, res) => {
+	res.sendFile(__dirname + '/tracks.json');
+});
 
-	fs.writeFile('./public/tracks.json', "hey Dude Update", (err) => {
+app.post('/tracks', (req, res) => { //DONT MESS WITH THIS
+	fs.writeFile('./public/tracks.json', "waiting to understand this", (err) => {
   		if (err) throw err;
   			res.send("success");
   		console.log('It\'s saved!');

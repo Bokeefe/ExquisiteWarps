@@ -74,7 +74,7 @@
           <div class="btn-group">
             <span title="drag in a new track" class="btn-new-track btn btn-default"><i class="fa fa-plus"></i> New Track</span>
           </div>
-              <button class="form-control" id="test">TEST</button>
+              <button class="form-control" id="punch">PUNCH</button>
         </div>
       </div>
       <div class="playlist-time-scale"></div>
@@ -97,26 +97,23 @@
     </div>
     <h3>Use the red cursor to cue where the next user can hear this track (keep it mysterious)</h3>
     <h3>NEXT USER EMAIL:</h3><textarea class="form-control">email@here.com</textarea>-->
-    <button class="form-control" id="test">TEST</button>
+    <button class="form-control" id="punch">PUNCH</button>
 
     <script type="text/javascript">
 
-    function test(){
-      $.post('./tracks') 
-        var tracks = playlistEditor.getJson();
+    function punch(){
+      console.log(playlistEditor.getJson());
     }
-
-
-    $('#test').click(test);
+    $('#punch').click(punch);
 
     (function(){
 
       $.get(
         "./tracks.json",
         function( res ) {
-          console.log(res);
+          console.log(res[0].start);
           $( ".result" ).html( res );
-          tracks = res;
+          var tracks = res;
           var tracksLength = 0;
           function scaleRes(arr){
             for(var i in arr){
