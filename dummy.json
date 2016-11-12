@@ -1,0 +1,26 @@
+[
+    {
+      "start":1,
+      "end":1.4,
+      "fades":[],
+      "src":"../media/one.wav",
+      "cuein":0,
+      "cueout":0
+    },
+    {
+      "start":2,
+      "end":4.2,
+      "fades":[],
+      "src":"../media/two.wav",
+      "cuein":0,
+      "cueout":0
+    },
+    {
+      "start":3,
+      "end":7,
+      "fades":[],
+      "src":"../media/three.wav",
+      "cuein":0,
+      "cueout":0
+    }
+]

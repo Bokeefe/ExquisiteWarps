@@ -28,8 +28,9 @@ app.get('/tracks', (req, res) => {
 	res.sendFile(__dirname + '/tracks.json');
 });
 
-app.post('/tracks', (req, res) => { //DONT MESS WITH THIS
-	fs.writeFile('./public/tracks.json', "waiting to understand this", (err) => {
+app.post('/punch', (req, res) => { //DONT MESS WITH THIS
+	fs.writeFile('./public/tracks.json', res.body, (err) => {
+		console.log(res.body);
   		if (err) throw err;
   			res.send("success");
   		console.log('It\'s saved!');

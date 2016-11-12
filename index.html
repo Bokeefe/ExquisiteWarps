@@ -102,9 +102,16 @@
     <script type="text/javascript">
 
     function punch(){
-      console.log(playlistEditor.getJson());
+      var trackData = playlistEditor.getJson();
+      console.log(JSON.parse(trackData));
+      $.post("/punch",
+        JSON.parse(trackData),
+        function(data,status){
+            console.log(status);
+        });
     }
     $('#punch').click(punch);
+
 
     (function(){
 
