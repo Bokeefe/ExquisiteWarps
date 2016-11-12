@@ -103,9 +103,9 @@
 
     function punch(){
       var trackData = playlistEditor.getJson();
-      console.log(JSON.parse(trackData));
+      console.log(trackData);
       $.post("/punch",
-        JSON.parse(trackData),
+        trackData,
         function(data,status){
             console.log(status);
         });

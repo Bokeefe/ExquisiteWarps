@@ -28,9 +28,9 @@ app.get('/tracks', (req, res) => {
 	res.sendFile(__dirname + '/tracks.json');
 });
 
-app.post('/punch', (req, res) => { //DONT MESS WITH THIS
-	fs.writeFile('./public/tracks.json', res.body, (err) => {
-		console.log(res.body);
+app.post('/punch', (req, res) => { 
+	fs.writeFile('./public/tracks.json', "WUT SHOULD GO HERE?", (err) => {
+
   		if (err) throw err;
   			res.send("success");
   		console.log('It\'s saved!');
