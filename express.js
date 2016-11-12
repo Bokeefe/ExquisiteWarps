@@ -29,7 +29,7 @@ app.get('/tracks', (req, res) => {
 });
 
 app.post('/punch', (req, res) => { 
-	fs.writeFile('./public/tracks.json', "WUT SHOULD GO HERE?", (err) => {
+	fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
 
   		if (err) throw err;
   			res.send("success");
