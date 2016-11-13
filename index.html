@@ -102,11 +102,12 @@
     <script type="text/javascript">
 
     function punch(){
-      var trackData = playlistEditor.getJson();
-      console.log(trackData);
+      var trackArr = playlistEditor.getJson();
+      var trackObj = playlistEditor.getInfo();
+      console.log(trackObj[0].src);
 
       $.post("/punch",
-        {trackData:trackData},
+        {trackArr:trackObj},
         function(data,status){
             console.log(status);
         });
@@ -119,7 +120,6 @@
       $.get(
         "./tracks.json",
         function( res ) {
-          console.log(res[0].start);
           $( ".result" ).html( res );
           var tracks = res;
           var tracksLength = 0;

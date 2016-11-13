@@ -25,11 +25,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/tracks', (req, res) => {
-	res.sendFile(__dirname + '/tracks.json');
+	res.sendFile(__dirname + '/dummy.json');
 });
 
 app.post('/punch', (req, res) => { 
-	fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
+	fs.writeFile('./dummy.json', req.body.trackData, (err) => {
 
   		if (err) throw err;
   			res.send("success");
