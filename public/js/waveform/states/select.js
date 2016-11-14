@@ -65,7 +65,9 @@ WaveformPlaylist.states.select = {
             maxX = Math.max(startX, endX);
 
             startTime = editor.pixelsToSeconds(minX);
+
             endTime = editor.pixelsToSeconds(maxX);
+            timeStamp = editor.pixelsToSeconds(maxX);
             editor.notifySelectUpdate(startTime, endTime, e.shiftKey);
 
             el.onmousemove = el.onmouseup = el.onmouseleave = null;

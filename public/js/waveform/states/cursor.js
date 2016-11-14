@@ -32,9 +32,9 @@ WaveformPlaylist.states.cursor = {
 
         var startX,
             startTime;
-
         startX = this.drawer.findClickedPixel(e);
         startTime = this.pixelsToSeconds(startX);
+        timeStamp = this.pixelsToSeconds(startX);
         this.notifySelectUpdate(startTime, startTime);
   }
 };

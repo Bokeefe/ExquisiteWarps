@@ -35,6 +35,21 @@ app.post('/punch', (req, res) => {
 	});
 });
 
+app.post('/test', (req, res) => { 
+	fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
+  		if (err) throw err;
+  			res.send("req.body.timeStamp");
+	});
+});
+
+app.post('/delete', (req, res) => { 
+	fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
+  		if (err) throw err;
+  			console.log("track deleted");
+  			res.send("success");
+	});
+});
+
 ////////
 app.use(express.static('public'));
 

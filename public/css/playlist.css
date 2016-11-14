@@ -1,17 +1,8 @@
 html, body {
-  height: 95%;
+
   margin: 5%;
   background-color: #EBDEF0;
   font-family: Century Gothic, sans-serif;
-}
-
-.topperh1 {
-  width: 50%;
-}
-
-.form-control {
-  width: 50%;
-  margin-left: 50%;
 }
 
 .playlist {
@@ -24,6 +15,7 @@ html, body {
 
 .playlist-tracks {
   background: white;
+  border-radius: 50px;
 }
 
 .channel {
@@ -31,7 +23,7 @@ html, body {
 }
 
 .channel-progress {
-  background: orange;
+  background: #ffc130;
 }
 
 .cursor {
@@ -43,11 +35,17 @@ html, body {
 }
 
 .playlist-top-bar {
+  border-radius: 50px;
+  background-color: purple;
   margin: 1em 0;
 }
 
 .playlist-bottom-bar {
   margin: 1em 0;
+}
+
+.btn .tooltip {
+  background-color: red;
 }
 
 .state-cursor,
@@ -86,6 +84,7 @@ html, body {
 }
 
 .channel-wrapper .controls {
+  border-radius: 50px 0px 50px 0px;
   background: red;
   text-align: center;
 }
@@ -95,6 +94,7 @@ html, body {
 }
 
 .channel-wrapper .controls header {
+  border-radius: 50px 0px 0px 0px;
   overflow: hidden;
   color: white;
   background-color: blueviolet;
@@ -113,10 +113,11 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transform: translate(0, 0);
+  border-radius: 50px;
 }
 
 .controls label:before {
-  content: "\f027";
+  content: "\f028";
   color: cyan;
   font-size: 18px;
   padding-right: 5px;
@@ -125,8 +126,8 @@ html, body {
 
 .controls label:after {
   content: "\f028";
-  color: grey;
-  font-size: 18px;
+  color: cyan;
+  font-size: 1px;
   padding-left: 5px;
 }
 

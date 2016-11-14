@@ -131,7 +131,7 @@ WaveformPlaylist.Config = function(params) {
             return {
                 show: params.controls.show,
                 width: params.controls.width
-            }
+            };
         };
 
         that.getTrackScroll = function getTrackScroll() {

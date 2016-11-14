@@ -27,6 +27,7 @@ WaveformPlaylist.AudioControls = {
             "btn-zoom-in": "zoomIn",
             "btn-zoom-out": "zoomOut",
             "btn-new-track": "newTrack",
+            "btn-delete-track": "deleteTrack",
             "btn-mute": "muteTrack",
             "btn-solo": "soloTrack",
             "btn-corpse": "corpseCut"
@@ -291,6 +292,14 @@ WaveformPlaylist.AudioControls = {
     newTrack: function() {
         this.fire("newtrack");
     },
+    // deleteTrack: function{
+    //           $.post("/delete",
+    //     {trackData:trackData},
+    //     function(data,status){
+    //         console.log(status);
+    //     })
+    // },
+    
 
     validateCueIn: function(e) {
         var value = e.target.value,
@@ -440,6 +449,7 @@ WaveformPlaylist.AudioControls = {
         this.fire('solotrack', track);
     },
     corpseCut: function(e) {
+        console.log(WaveformPlaylist.TimeScale.valueOf());
        console.log("yerk");
     },
 

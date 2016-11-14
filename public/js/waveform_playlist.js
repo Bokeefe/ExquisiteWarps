@@ -556,10 +556,12 @@ var WaveformPlaylist = {
 
     save: function() {
         this.storage.save("/ExquisiteWarps/dummy.json", this.getInfo());
+        console.log(this.getInfo());
     },
 
     restore: function() {
-        var state = this.storage.restore("/ExquisiteWarps/dummy.json");;
+        var warpName = prompt("What is the name of the warp you are looking for?");
+        var state = this.storage.restore(warpName);;
 
         this.destroy();
         this.init(state);

@@ -72,10 +72,15 @@
             <span class="btn-corpse btn btn-danger" data-state="corpse" title="select audio region to send to the next user"><i class="fa fa-italic"></i></span>
           </div>
           <div class="btn-group">
-            <span title="drag in a new track" class="btn-new-track btn btn-default"><i class="fa fa-plus"></i> New Track</span>
+            <span title="drag in a new track" class="btn-new-track btn btn-default"id class="fa fa-plus"></i> New Track</span>
+            <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last Trak</span>
+          </div><br>
+          <div class="btn-group">
+              <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder">saveOrder</span>
+              <span title="CorpseCut" class="btn-CorpseCut btn btn-default" id="CorpseCut">Cut Corpse!</span>
+              <span title="finish" class="btn-finish btn btn-default" id="finish">FINISH!</span>
           </div>
-              <button class="form-control" id="punch">PUNCH</button>
-        </div>
+
       </div>
       <div class="playlist-time-scale"></div>
       <div class="playlist-tracks"></div>
@@ -97,19 +102,58 @@
     </div>
     <h3>Use the red cursor to cue where the next user can hear this track (keep it mysterious)</h3>
     <h3>NEXT USER EMAIL:</h3><textarea class="form-control">email@here.com</textarea>-->
-    <button class="form-control" id="punch">PUNCH</button>
+
 
     <script type="text/javascript">
-
+    var corpseNum = 0;
+    var corpseSet = 4;
+    var timeStamp = 0;
+    var globalLoss = 0;
+    var isFinished = false;
     function punch(){
       var trackData = playlistEditor.getJson();
       $.post("/punch",
         {trackData:trackData},
         function(data,status){
-            console.log(status);
+            console.log(timeStamp);
         });
     }
-    $('#punch').click(punch);
+    $('#saveOrder').click(punch);
+
+    function test(){
+      var trackData = playlistEditor.getInfo();
+      console.log(trackData);
+      for(var i in trackData){
+        globalLoss += timeStamp;
+        trackData[i].start -= timeStamp;
+        trackData[i].end -= timeStamp;
+      }
+      trackData = JSON.stringify(trackData);
+      $.post("/test",
+        {trackData:trackData},
+        function(data,status){
+            console.log(timeStamp + "sent");
+        });
+    }
+    $('#CorpseCut').click(test);
+    function corpse (){
+      
+      isFinished = !isFinished;
+      location.reload();
+      console.log(isFinished);
+    }
+    $('#finish').click(corpse);
+
+    function deleteTrack(){
+      var trackData = playlistEditor.getInfo();
+      console.log(trackData[0]);
+      // $.post("/delete",
+      //   {trackDelete:trackDelete},
+      //   function(data,status){
+      //       console.log(status);
+      //   });
+    }
+    $('#delete').click(deleteTrack);
 
 
     (function(){
@@ -119,6 +163,15 @@
         function( res ) {
           $( ".result" ).html( res );
           var tracks = res;
+          for(var i in res){
+            corpseNum += 1;
+            if(corpseNum < corpseSet){
+              tracks = [res[i]];
+            } else {
+            tracks = res;
+            }
+          }
+
           var tracksLength = 0;
           function scaleRes(arr){
             for(var i in arr){
@@ -141,6 +194,7 @@
               UITheme: "bootstrap",
               state: 'select',
               waveOutlineColor: 'white'
+
           });  
 
           playlistEditor = Object.create(WaveformPlaylist, { //making this a global variable is cheating
@@ -152,13 +206,6 @@
         },
         'json'
       );
-
-//Event listener bound to TrackEvent takes data from playlistEditor.getJson to tracks.json
-
-
-//playlistEditor.getJson();
-
-//monitorEvents(document.body);
 
     })();
 
