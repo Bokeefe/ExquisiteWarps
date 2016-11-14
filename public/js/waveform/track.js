@@ -143,9 +143,9 @@ WaveformPlaylist.TrackEditor = {
         var that = this,
             xhr = new XMLHttpRequest();
 
+
         this.filename = src.replace(/^.*[\\\/]/, '');
         this.src = src;
-
         xhr.open('GET', src, true);
         xhr.responseType = 'arraybuffer';
 
@@ -551,7 +551,7 @@ WaveformPlaylist.TrackEditor = {
             start: this.startTime,
             end: this.endTime,
             fades: fades,
-            src: this.src,
+            src: "../media/" + this.filename,
             cuein: this.samplesToSeconds(cues.cuein),
             cueout: this.samplesToSeconds(cues.cueout)
         };

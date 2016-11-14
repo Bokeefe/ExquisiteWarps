@@ -1,3 +1,4 @@
+/* jslint esversion:6 */
 'use strict';
 
 WaveformPlaylist.AudioControls = {
@@ -27,7 +28,8 @@ WaveformPlaylist.AudioControls = {
             "btn-zoom-out": "zoomOut",
             "btn-new-track": "newTrack",
             "btn-mute": "muteTrack",
-            "btn-solo": "soloTrack"
+            "btn-solo": "soloTrack",
+            "btn-corpse": "corpseCut"
         },
         "onchange": {
             "time-format": "changeTimeFormat"
@@ -436,6 +438,9 @@ WaveformPlaylist.AudioControls = {
         el.classList.toggle(this.classes["active"]);
 
         this.fire('solotrack', track);
+    },
+    corpseCut: function(e) {
+       console.log("yerk");
     },
 
     activateButton: function(el) {

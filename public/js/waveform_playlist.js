@@ -555,11 +555,11 @@ var WaveformPlaylist = {
     },
 
     save: function() {
-        this.storage.save("test", this.getInfo());
+        this.storage.save("/ExquisiteWarps/dummy.json", this.getInfo());
     },
 
     restore: function() {
-        var state = this.storage.restore("test");;
+        var state = this.storage.restore("/ExquisiteWarps/dummy.json");;
 
         this.destroy();
         this.init(state);

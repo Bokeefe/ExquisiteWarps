@@ -69,7 +69,7 @@
             <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
           </div>
           <div class="btn-group">
-            <span class="btn-state btn btn-danger" data-state="select" title="select audio region to send to the next user"><i class="fa fa-italic"></i></span>
+            <span class="btn-corpse btn btn-danger" data-state="corpse" title="select audio region to send to the next user"><i class="fa fa-italic"></i></span>
           </div>
           <div class="btn-group">
             <span title="drag in a new track" class="btn-new-track btn btn-default"><i class="fa fa-plus"></i> New Track</span>
@@ -102,12 +102,9 @@
     <script type="text/javascript">
 
     function punch(){
-      var trackArr = playlistEditor.getJson();
-      var trackObj = playlistEditor.getInfo();
-      console.log(trackObj[0].src);
-
+      var trackData = playlistEditor.getJson();
       $.post("/punch",
-        {trackArr:trackObj},
+        {trackData:trackData},
         function(data,status){
             console.log(status);
         });
@@ -125,7 +122,7 @@
           var tracksLength = 0;
           function scaleRes(arr){
             for(var i in arr){
-                tracksLength = parseInt(arr[i].end);
+                tracksLength = parseInt(arr[i].end)+1;
             }
           }
           scaleRes(tracks);

@@ -25,15 +25,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/tracks', (req, res) => {
-	res.sendFile(__dirname + '/dummy.json');
+	res.sendFile(__dirname + '/public/tracks.json');
 });
 
 app.post('/punch', (req, res) => { 
-	fs.writeFile('./dummy.json', req.body.trackData, (err) => {
-
+	fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
   		if (err) throw err;
   			res.send("success");
-  		console.log('It\'s saved!');
 	});
 });
 
