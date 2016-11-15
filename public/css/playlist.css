@@ -74,7 +74,7 @@ html, body {
 }
 
 .state-file-drop {
-  border: 2px dashed blue;
+  border: 2px dashed purple;
   height: 100px;
   width: 100%;
 }
@@ -94,7 +94,7 @@ html, body {
 }
 
 .channel-wrapper .controls header {
-  border-radius: 50px 0px 0px 0px;
+  border-radius: 50px 0px 50px 0px;
   overflow: hidden;
   color: white;
   background-color: blueviolet;
