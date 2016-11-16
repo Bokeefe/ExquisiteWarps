@@ -3,7 +3,9 @@ This project began with Naomi Aro's Waveform Editor framework and seeks to creat
 
 mongod --dbpath ./data
 
-runny dummy server:
+dummy server helpers:
 simplehttpserver
 python -m SimpleHTTPServer
+
+
 [MIT License](http://doge.mit-license.org)

@@ -69,17 +69,9 @@
             <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
           </div>
           <div class="btn-group">
-            <span title="drag in a new track" class="btn-new-track btn btn-default"id class="fa fa-plus"></i> New Track</span>
+            <span title="drag in a new track" class="btn-new-track btn btn-default"id class="fa fa-plus"><i class="fa fa-plus"></i> New Track</span>
             <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last Trak</span>
           </div>
-          <select class="input-large" id="corpseCount">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-          <br>
           <div class="btn-group">
               <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder">saveOrder</span>
               <span title="CorpseCut" class="btn-CorpseCut btn btn-default" id="CorpseCut">Cut Corpse!</span>
@@ -105,12 +97,31 @@
         </form>
       </div>
     </div>
-    <h3>Use the red cursor to cue where the next user can hear this track (keep it mysterious)</h3>
-    <h3>NEXT USER EMAIL:</h3><textarea class="form-control">email@here.com</textarea>-->
+    -->
 
 
     <script type="text/javascript">
+        (function(){
     var corpseKeeper;
+    $.get(
+      "./corpseKeeper.json",
+      function( res ) {
+      $( ".result" ).html(res);
+      corpseKeeper = res;
+
+    $.get(
+      "./tracks.json",
+      function( res ) {
+        $( ".result" ).html( res );
+        var tracks = res;
+        for(var i in res){
+          if(corpseKeeper.corpseCount < corpseKeeper.corpseSet){
+            tracks = [res[i]];
+          } else {
+          tracks = res;
+          }
+        }
+
     function punch(){
       var trackData = playlistEditor.getJson();
       $.post("/punch",
@@ -144,33 +155,6 @@
     $('#delete').click(deleteTrack);
 
 
-    (function(){
-      var corpseKeeper;
-      $.get(
-        "./corpseKeeper.json",
-        function( res ) {
-        $( ".result" ).html(res);
-        corpseKeeper = res;
-     
-
-
-$('#corpseCount').click(console.log($('#corpseCount').val()));
-
-
-
-
-      $.get(
-        "./tracks.json",
-        function( res ) {
-          $( ".result" ).html( res );
-          var tracks = res;
-          for(var i in res){
-            if(corpseKeeper.corpseCount < corpseKeeper.corpseSet){
-              tracks = [res[i]];
-            } else {
-            tracks = res;
-            }
-          }
 
           var tracksLength = 0;
           function scaleRes(arr){
