@@ -99,11 +99,17 @@
   (function(){
     var corpseKeeper;
     var timeStamp;
+    var isFinished = false;
+
     $.get(
       "./corpseKeeper.json",
       function( res ) {
       $( ".result" ).html(res);
       corpseKeeper = res;
+
+      if(corpseKeeper.corpseNum >= corpseKeeper.corpseSet){
+        isFinished = !isFinished;
+      }
 
     $.get(
       "./tracks.json",
@@ -111,11 +117,10 @@
         $( ".result" ).html( res );
         var tracks = res;
         for(var i in res){
-          if(corpseKeeper.corpseNum < corpseKeeper.corpseSet) {
-            tracks = [res[i]];
-          console.log(tracks);
+          if(isFinished) {
+            tracks = res;
           } else {
-          tracks = res;
+            tracks = [res[i]];
           }
         }
 
