@@ -65,10 +65,11 @@ WaveformPlaylist.states.select = {
             maxX = Math.max(startX, endX);
 
             startTime = editor.pixelsToSeconds(minX);
-
             endTime = editor.pixelsToSeconds(maxX);
-            var timeStamp = editor.pixelsToSeconds(maxX);
-            console.log(timeStamp);
+
+            // $("#button").click(function(){ timeStamp(endTime) });
+            timeStamp(endTime);
+
             editor.notifySelectUpdate(startTime, endTime, e.shiftKey);
 
             el.onmousemove = el.onmouseup = el.onmouseleave = null;
@@ -77,3 +78,15 @@ WaveformPlaylist.states.select = {
         el.onmouseup = el.onmouseleave = complete;
     }
 };
+
+
+function timeStamp (endTime) {
+    $.post("/timeStamp",
+        {endTime:endTime},
+        function(res){
+            console.log(res);
+    });
+
+    
+}
+

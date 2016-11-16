@@ -45,11 +45,10 @@
             <span class="btn-pause btn btn-default"><i class="fa fa-pause"></i></span>
             <span class="btn-play btn btn-default"><i class="fa fa-play"></i></span>
             <span class="btn-stop btn btn-default"><i class="fa fa-stop"></i></span>
-            <span class="btn-rewind btn btn-default"><i class="fa fa-fast-backward"></i></span>
-            <span class="btn-fast-forward btn btn-default"><i class="fa fa-fast-forward"></i></span>
+            <span title="zoom in" class="btn-zoom-in btn btn-default"><i class="fa fa-search-plus"></i></span>
+            <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
           </div>
           <div class="btn-group">
-            <span class="btn-state btn btn-default" data-state="cursor" title="select cursor"><i class="fa fa-headphones"></i></span>
             <span class="btn-state btn btn-default" data-state="select" title="select audio region"><i class="fa fa-italic"></i></span>
             <span class="btn-state btn btn-default" data-state="shift" title="shift audio in time"><i class="fa fa-arrows-h"></i></span>
           </div>
@@ -65,10 +64,7 @@
           <div id="btns_audio_tools" class="btn-group">
             <span title="keep only the selected audio region" class="btn-trim-audio btn btn-default disabled">Crop Audio Track</span>
           </div>-->
-          <div class="btn-group">
-            <span title="zoom in" class="btn-zoom-in btn btn-default"><i class="fa fa-search-plus"></i></span>
-            <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
-          </div>
+
           <div class="btn-group">
             <span title="drag in a new track" class="btn-new-track btn btn-default" class="fa fa-plus"><i class="fa fa-plus"></i> New <i class="fa fa-music" aria-hidden="true"></i></span>
             <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last <i class="fa fa-music" aria-hidden="true"></i></span>
@@ -102,6 +98,7 @@
     <script type="text/javascript">
   (function(){
     var corpseKeeper;
+    var timeStamp;
     $.get(
       "./corpseKeeper.json",
       function( res ) {
@@ -115,7 +112,7 @@
         var tracks = res;
         for(var i in res){
           if(corpseKeeper.corpseNum < corpseKeeper.corpseSet) {
-            tracks = res[i];
+            tracks = [res[i]];
           console.log(tracks);
           } else {
           tracks = res;
@@ -124,28 +121,33 @@
 
     function punch(){
       var trackData = playlistEditor.getJson();
+      // if(timeStamp === undefined){
+      //   alert("Cue the cursor to where the next user can sample your track, then hit save");
+      // } else {
       $.post("/punch",
         {trackData:trackData},
         function(data,status){
-            console.log("worked");
+            console.log(status);
+
         });
+      // }
     }
     $('#saveOrder').click(punch);
 
     function test(){
-      var trackData = playlistEditor.getInfo();
-      console.log(trackData);
-      for(var i in trackData){
-        globalLoss += corpseKeeper.timeStamp;
-        trackData[i].start -= corpseKeeper.timeStamp;
-        trackData[i].end -= corpseKeeper.timeStamp;
-      }
-      trackData = JSON.stringify(trackData);
-      $.post("/test",
-        {trackData:trackData},
-        function(data,status){
-            console.log(corpseKeeper.timeStamp + "sent");
-        });
+      // var trackData = playlistEditor.getInfo();
+      // console.log(trackData);
+      // for(var i in trackData){
+      //   globalLoss += corpseKeeper.timeStamp;
+      //   trackData[i].start -= corpseKeeper.timeStamp;
+      //   trackData[i].end -= corpseKeeper.timeStamp;
+      // }
+      // trackData = JSON.stringify(trackData);
+      // $.post("/test",
+      //   {trackData:trackData},
+      //   function(data,status){
+      //       console.log(corpseKeeper.timeStamp + "sent");
+      //   });
     }
     $('#CorpseCut').click(test);
 

@@ -7,8 +7,10 @@ html, body {
 .playlist {
   margin: 2em 0 0 0;
 }
-.btn-group {
+.playlist-toolbar{
   margin-left: 4em;
+}
+.btn-group {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 .playlist-time-scale {
