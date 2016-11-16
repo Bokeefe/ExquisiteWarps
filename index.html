@@ -73,8 +73,8 @@
             <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last Trak</span>
           </div>
           <div class="btn-group">
-              <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder">saveOrder</span>
-              <span title="CorpseCut" class="btn-CorpseCut btn btn-default" id="CorpseCut">Cut Corpse!</span>
+              <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder">Save This Arrangement</span>
+              <span title="CorpseCut" class="btn-CorpseCut btn btn-default" id="CorpseCut">Punch where the cursor is to the next user</span>
               <span title="finish" class="btn-finish btn btn-default" id="finish">FINISH!</span>
           </div>
 
@@ -150,22 +150,30 @@
     $('#CorpseCut').click(test);
 
     function deleteTrack(){
+      var trackDel = [];
+      var trackNow = playlistEditor.getInfo();
+      for(var i =0; i < trackNow.length-1;i++) {
+        trackDel.push(trackNow[i]);
+      }
+      console.log(playlistEditor.getJson());
+      trackDel = JSON.stringify(trackDel);
 
+      $.post("/delete",
+        {trackDel:trackDel},
+        function(data,status){
+            location.reload();
+      });
     }
     $('#delete').click(deleteTrack);
-
-
 
           var tracksLength = 0;
           function scaleRes(arr){
             for(var i in arr){
-                tracksLength = parseInt(arr[i].end)+1;
+                tracksLength = parseInt(arr[i].end)*1.1;
             }
           }
           scaleRes(tracks);
           
-
-
           var config = new WaveformPlaylist.Config({
               resolution: tracksLength * 60,
               mono: true,
