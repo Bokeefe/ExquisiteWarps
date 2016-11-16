@@ -1,0 +1,23 @@
+html, body {
+
+  margin: 5%;
+  background-color: #EBDEF0;
+  font-family: Century Gothic, sans-serif;
+}
+
+.logbox {
+  margin: 2em 0 0 0;
+}
+
+.logbox-top-bar {
+  border-radius: 50px;
+  background-color: purple;
+  margin: 1em 0;
+}
+
+.form-horizontal{
+  padding: 50px;
+}
+.btn {
+  background-color: #ffc130;
+}

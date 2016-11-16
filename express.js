@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html'); 
 });
 
+app.get('/login', (req, res) => {
+	res.sendFile(__dirname + '/login.html'); 
+});
+
 app.get('/tracks', (req, res) => {
 	res.sendFile(__dirname + '/public/tracks.json');
 });
@@ -32,6 +36,13 @@ app.post('/punch', (req, res) => {
 	fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
   		if (err) throw err;
   			res.send("success");
+	});
+});
+
+app.post('/public/corpseKeeper', (req, res) => { 
+	fs.readFile('./public/corpseKeeper.json', req.body, (err) => {
+  		if (err) throw err;
+  			res.send(res);
 	});
 });
 

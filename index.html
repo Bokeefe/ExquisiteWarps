@@ -60,21 +60,26 @@
             <span class="btn btn-default btn-fade" data-fade="linear">linear</span>
             <span class="btn btn-default btn-fade" data-fade="exponential">exponential</span>
             <span class="btn btn-default btn-fade" data-fade="sCurve">s-curve</span>
-          </div>-->
+          </div>
           <div id="btns_audio_tools" class="btn-group">
             <span title="keep only the selected audio region" class="btn-trim-audio btn btn-default disabled">Crop Audio Track</span>
-          </div>
+          </div>-->
           <div class="btn-group">
             <span title="zoom in" class="btn-zoom-in btn btn-default"><i class="fa fa-search-plus"></i></span>
             <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
           </div>
           <div class="btn-group">
-            <span class="btn-corpse btn btn-danger" data-state="corpse" title="select audio region to send to the next user"><i class="fa fa-italic"></i></span>
-          </div>
-          <div class="btn-group">
             <span title="drag in a new track" class="btn-new-track btn btn-default"id class="fa fa-plus"></i> New Track</span>
             <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last Trak</span>
-          </div><br>
+          </div>
+          <select class="input-large" id="corpseCount">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          <br>
           <div class="btn-group">
               <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder">saveOrder</span>
               <span title="CorpseCut" class="btn-CorpseCut btn btn-default" id="CorpseCut">Cut Corpse!</span>
@@ -105,17 +110,13 @@
 
 
     <script type="text/javascript">
-    var corpseNum = 0;
-    var corpseSet =4;
-    var timeStamp = 0;
-    var globalLoss = 0;
-    var isFinished = false;
+    var corpseKeeper;
     function punch(){
       var trackData = playlistEditor.getJson();
       $.post("/punch",
         {trackData:trackData},
         function(data,status){
-            console.log(timeStamp);
+            console.log("worked");
         });
     }
     $('#saveOrder').click(punch);
@@ -124,39 +125,39 @@
       var trackData = playlistEditor.getInfo();
       console.log(trackData);
       for(var i in trackData){
-        globalLoss += timeStamp;
-        trackData[i].start -= timeStamp;
-        trackData[i].end -= timeStamp;
+        globalLoss += corpseKeeper.timeStamp;
+        trackData[i].start -= corpseKeeper.timeStamp;
+        trackData[i].end -= corpseKeeper.timeStamp;
       }
       trackData = JSON.stringify(trackData);
       $.post("/test",
         {trackData:trackData},
         function(data,status){
-            console.log(timeStamp + "sent");
+            console.log(corpseKeeper.timeStamp + "sent");
         });
     }
     $('#CorpseCut').click(test);
-    function corpse (){
-      
-      isFinished = !isFinished;
-      location.reload();
-      console.log(isFinished);
-    }
-    $('#finish').click(corpse);
 
     function deleteTrack(){
-      var trackData = playlistEditor.getInfo();
-      console.log(trackData[0]);
-      // $.post("/delete",
-      //   {trackDelete:trackDelete},
-      //   function(data,status){
-      //       console.log(status);
-      //   });
+
     }
     $('#delete').click(deleteTrack);
 
 
     (function(){
+      var corpseKeeper;
+      $.get(
+        "./corpseKeeper.json",
+        function( res ) {
+        $( ".result" ).html(res);
+        corpseKeeper = res;
+     
+
+
+$('#corpseCount').click(console.log($('#corpseCount').val()));
+
+
+
 
       $.get(
         "./tracks.json",
@@ -164,8 +165,7 @@
           $( ".result" ).html( res );
           var tracks = res;
           for(var i in res){
-            corpseNum += 1;
-            if(corpseNum < corpseSet){
+            if(corpseKeeper.corpseCount < corpseKeeper.corpseSet){
               tracks = [res[i]];
             } else {
             tracks = res;
@@ -179,9 +179,11 @@
             }
           }
           scaleRes(tracks);
+          
+
 
           var config = new WaveformPlaylist.Config({
-              resolution: tracksLength * 50,
+              resolution: tracksLength * 60,
               mono: true,
               waveHeight: 100,
               container: document.getElementById("playlist"),
@@ -197,6 +199,7 @@
 
           });  
 
+
           playlistEditor = Object.create(WaveformPlaylist, { //making this a global variable is cheating
             config: {
               value: config
@@ -204,8 +207,8 @@
           });
           playlistEditor.init(tracks);
         },
-        'json'
-      );
+        'json');
+         });
 
     })();
 

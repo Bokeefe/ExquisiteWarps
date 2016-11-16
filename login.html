@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>ExquisiteWarps beta AF</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="../css/login.css" rel="stylesheet" />
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <div id="logbox" class="logbox">
+      <div id="top-bar" class="logbox-top-bar">
+        <form class="form-horizontal">
+            <div class="form-group">
+              <label for="usr">Name:</label>
+              <input type="text" class="form-control" id="usr">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" id="pwd">
+
+
+            </div>
+            <div class="form-group">
+              <label for="title" value="Name this">Title:</label>
+              <input type="text" class="form-control" id="title">
+              <label for="corpselabel">Number of Contributors 2 tha Corpse:</label>
+              <select class="form-control" id="corpsenum">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <label for="instructionslabel">Instructions:</label>
+              <textarea class="form-control" rows="5" id="instructions" value="Let other contributors know the theme/goal/vibe of this corpse"></textarea>
+              <button id="submit" type="button" class="btn btn-default btn-block">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    $("#submit").click(function(){
+      console.log($("title").val());
+    });
+
+    </script>
+    <script>
+    </script>
+  </body>
+</html>
