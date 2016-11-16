@@ -1,8 +1,8 @@
 {
 	"name":"Testing",
 	"instructions":"We are making a demo to show how this biz works",
-    "corpseNum": 1,
-    "corpseSet": 5,
+    "corpseNum": 5,
+    "corpseSet": 4,
     "timeStamp":  0,
     "globalLoss":  0
 }

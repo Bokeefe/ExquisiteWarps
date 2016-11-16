@@ -49,11 +49,20 @@
 
     <script type="text/javascript">
     $("#submit").click(function(){
-      console.log($("title").val());
+      var login = {
+        "user": $("usr").val(),
+        "password": $("pwd").val(),
+        "title":$("title").val(),
+        "corpsenum": $("corpsenum").val(),
+        "instructions":$("instructions").val()};
+      // $.post("/login",
+      //   function() {
+          console.log(login);
+        // });
     });
-
-    </script>
-    <script>
+  
+//event.preventDefault();
+    </script>    <script>
     </script>
   </body>
 </html>

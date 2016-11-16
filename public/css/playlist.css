@@ -1,7 +1,7 @@
 html, body {
   margin: 1em;
   background-color: #EBDEF0;
-  font-family: Century Gothic, sans-serif;
+  font-family: verdana;, sans-serif;
 }
 
 .playlist {
@@ -9,14 +9,17 @@ html, body {
 }
 .btn-group {
   margin-left: 4em;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 .playlist-time-scale {
+  color: #EBDEF0;
   height: 30px;
 }
 
 .playlist-tracks {
   background: white;
   border-radius: 50px;
+
 }
 
 .channel {

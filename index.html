@@ -52,10 +52,11 @@
             <span class="btn-state btn btn-default" data-state="cursor" title="select cursor"><i class="fa fa-headphones"></i></span>
             <span class="btn-state btn btn-default" data-state="select" title="select audio region"><i class="fa fa-italic"></i></span>
             <span class="btn-state btn btn-default" data-state="shift" title="shift audio in time"><i class="fa fa-arrows-h"></i></span>
-            <span class="btn-state btn btn-default" data-state="fadein" title="set audio fade in"><i class="fa fa-long-arrow-left"></i></span>
+          </div>
+            <!--<span class="btn-state btn btn-default" data-state="fadein" title="set audio fade in"><i class="fa fa-long-arrow-left"></i></span>
             <span class="btn-state btn btn-default" data-state="fadeout" title="set audio fade out"><i class="fa fa-long-arrow-right"></i></span>
           </div>
-          <!--<div class="btn-group">
+          <div class="btn-group">
             <span class="btn btn-default btn-fade" data-fade="logarithmic">logarithmic</span>
             <span class="btn btn-default btn-fade" data-fade="linear">linear</span>
             <span class="btn btn-default btn-fade" data-fade="exponential">exponential</span>
@@ -69,13 +70,11 @@
             <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
           </div>
           <div class="btn-group">
-            <span title="drag in a new track" class="btn-new-track btn btn-default"id class="fa fa-plus"><i class="fa fa-plus"></i> New Track</span>
-            <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last Trak</span>
+            <span title="drag in a new track" class="btn-new-track btn btn-default" class="fa fa-plus"><i class="fa fa-plus"></i> New <i class="fa fa-music" aria-hidden="true"></i></span>
+            <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last <i class="fa fa-music" aria-hidden="true"></i></span>
           </div>
           <div class="btn-group">
-              <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder">Save This Arrangement</span>
-              <span title="CorpseCut" class="btn-CorpseCut btn btn-default" id="CorpseCut">Punch where the cursor is to the next user</span>
-              <span title="finish" class="btn-finish btn btn-default" id="finish">FINISH!</span>
+              <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder"><i class="fa fa-floppy-o" aria-hidden="true"></i> & <i class="fa fa-paper-plane" aria-hidden="true"></i>  </span>
           </div>
 
       </div>
@@ -101,7 +100,7 @@
 
 
     <script type="text/javascript">
-        (function(){
+  (function(){
     var corpseKeeper;
     $.get(
       "./corpseKeeper.json",
@@ -115,8 +114,9 @@
         $( ".result" ).html( res );
         var tracks = res;
         for(var i in res){
-          if(corpseKeeper.corpseCount < corpseKeeper.corpseSet){
-            tracks = [res[i]];
+          if(corpseKeeper.corpseNum < corpseKeeper.corpseSet) {
+            tracks = res[i];
+          console.log(tracks);
           } else {
           tracks = res;
           }

@@ -22,6 +22,11 @@ app.use(session({
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html'); 
+
+});
+
+app.get('/png',(req,res) => {
+		res.sendFile(__dirname + '/public/ex.png');
 });
 
 app.get('/login', (req, res) => {
