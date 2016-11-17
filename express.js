@@ -38,10 +38,10 @@ app.get('/tracks', (req, res) => {
 });
 
 app.post('/punch', (req, res) => { 
-	fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
-  		if (err) throw err;
-  			res.send("success");
-	});
+	// fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
+ //  		if (err) throw err;
+ //  			res.send("success");
+	// });
 });
 
 app.post('/public/corpseKeeper', (req, res) => { 
@@ -51,6 +51,8 @@ app.post('/public/corpseKeeper', (req, res) => {
 	});
 });
 
+
+
 app.post('/delete', (req, res) => { 
 	fs.writeFile('./public/tracks.json', req.body.trackDel, (err) => {
   		if (err) throw err;
@@ -59,23 +61,17 @@ app.post('/delete', (req, res) => {
 	});
 });
 
-app.post('/timeStamp', (req, res) => { 
-	var corpseKeeper = {
-	"name":"Testing",
-	"instructions":"We are making a demo to show how this biz works",
-    "corpseNum": 1,
-    "corpseSet": 4,
-    "timeStamp":  parseFloat(req.body.endTime),
-    "globalLoss":  0
-};
 
-corpseKeeper = JSON.stringify(corpseKeeper);
-	fs.writeFile('./public/corpseKeeper.json', corpseKeeper, (err) => {
+
+app.post('/timeStamp', (req, res) => { 
+	fs.writeFile('./public/corpseKeeper.json', req.body.update, (err) => {
   		if (err) throw err;
-  			console.log(corpseKeeper);
   			res.send("success");
 	});
 });
+
+
+
 ////////
 app.use(express.static('public'));
 

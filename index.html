@@ -70,7 +70,8 @@
             <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last <i class="fa fa-music" aria-hidden="true"></i></span>
           </div>
           <div class="btn-group">
-              <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder"><i class="fa fa-floppy-o" aria-hidden="true"></i> & <i class="fa fa-paper-plane" aria-hidden="true"></i>  </span>
+           <span title="test" class="btn-test btn btn-default" id="test"><i class="fa fa-plus" aria-hidden="true"></i></span>
+          <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder"><i class="fa fa-floppy-o" aria-hidden="true"></i> & <i class="fa fa-paper-plane" aria-hidden="true"></i>  </span>
           </div>
 
       </div>
@@ -98,7 +99,7 @@
     <script type="text/javascript">
   (function(){
     var corpseKeeper;
-    var timeStamp;
+    var timeStamp = 0; 
     var isFinished = false;
 
     $.get(
@@ -106,7 +107,6 @@
       function( res ) {
       $( ".result" ).html(res);
       corpseKeeper = res;
-
       if(corpseKeeper.corpseNum >= corpseKeeper.corpseSet){
         isFinished = !isFinished;
       }
@@ -125,36 +125,50 @@
         }
 
     function punch(){
-      var trackData = playlistEditor.getJson();
-      // if(timeStamp === undefined){
-      //   alert("Cue the cursor to where the next user can sample your track, then hit save");
-      // } else {
+      var trackData = playlistEditor.getInfo();
+      console.log(trackData);
+      console.log(corpseKeeper.corpseNum +=1);
+      $.get(
+        "./corpseKeeper.json",
+        function( res ) {
+        var corpseKeeper = res;
+        var timeSub = corpseKeeper.timeStamp;
+        var update =  {
+            "name":corpseKeeper.name,
+            "instructions":corpseKeeper.instructions,
+            "corpseNum":corpseKeeper.corpseNum += 1,
+            "corpseSet":corpseKeeper.corpseSet,
+            "timeStamp":corpseKeeper.timeStamp,
+            "globalLoss":corpseKeeper.globalLoss += corpseKeeper.timeStamp};
+      update = JSON.stringify(update);
+      $.post("/timeStamp",
+        {update:update},
+        function(data,status){
+        console.log(status);
+      });
+      function subTime(timeSub){
+           for(var i in trackData){
+        trackData[i].start = trackData[i].start-1;
+        trackData[i].end = trackData[i].end-1;
+        }  
+      }
+ 
+      trackData = JSON.stringify(trackData);
+      console.log(trackData);
       $.post("/punch",
         {trackData:trackData},
         function(data,status){
             console.log(status);
-
         });
-      // }
+      });
     }
+
     $('#saveOrder').click(punch);
 
     function test(){
-      // var trackData = playlistEditor.getInfo();
-      // console.log(trackData);
-      // for(var i in trackData){
-      //   globalLoss += corpseKeeper.timeStamp;
-      //   trackData[i].start -= corpseKeeper.timeStamp;
-      //   trackData[i].end -= corpseKeeper.timeStamp;
-      // }
-      // trackData = JSON.stringify(trackData);
-      // $.post("/test",
-      //   {trackData:trackData},
-      //   function(data,status){
-      //       console.log(corpseKeeper.timeStamp + "sent");
-      //   });
+
     }
-    $('#CorpseCut').click(test);
+    $('#test').click(test);
 
     function deleteTrack(){
       var trackDel = [];

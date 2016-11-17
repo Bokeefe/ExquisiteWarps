@@ -81,12 +81,31 @@ WaveformPlaylist.states.select = {
 
 
 function timeStamp (endTime) {
-    $.post("/timeStamp",
-        {endTime:endTime},
-        function(res){
-            console.log(res);
+    $.get(
+        "./corpseKeeper.json",
+        function( res ) {
+        var corpseKeeper = res;
+        var update =  {
+            "name":corpseKeeper.name,
+            "instructions":corpseKeeper.instructions,
+            "corpseNum":corpseKeeper.corpseNum,
+            "corpseSet":corpseKeeper.corpseSet,
+            "timeStamp":endTime,
+            "globalLoss":corpseKeeper.globalLoss};
+
+      update = JSON.stringify(update);
+      $.post("/timeStamp",
+        {update:update},
+        function(data,status){
+        console.log(status);
+      });
     });
+}
+
+
+
+
 
     
-}
+
 
