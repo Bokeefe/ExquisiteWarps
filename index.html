@@ -126,8 +126,8 @@
 
     function punch(){
       var trackData = playlistEditor.getInfo();
+      var trackData2 = playlistEditor.getInfo();
       console.log(trackData);
-      console.log(corpseKeeper.corpseNum +=1);
       $.get(
         "./corpseKeeper.json",
         function( res ) {
@@ -147,16 +147,15 @@
         console.log(status);
       });
       function subTime(timeSub){
-           for(var i in trackData){
-        trackData[i].start = trackData[i].start-1;
-        trackData[i].end = trackData[i].end-1;
-        }  
+        for(var i in trackData){
+          trackData2[i].start=trackData[i].start-timeSub;
+          trackData2[i].end=trackData[i].end-timeSub;
+          }  
       }
- 
-      trackData = JSON.stringify(trackData);
-      console.log(trackData);
+      subTime(timeSub);
+      trackData2 = JSON.stringify(trackData2);
       $.post("/punch",
-        {trackData:trackData},
+        {trackData2:trackData2},
         function(data,status){
             console.log(status);
         });

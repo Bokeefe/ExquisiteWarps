@@ -38,10 +38,10 @@ app.get('/tracks', (req, res) => {
 });
 
 app.post('/punch', (req, res) => { 
-	// fs.writeFile('./public/tracks.json', req.body.trackData, (err) => {
- //  		if (err) throw err;
- //  			res.send("success");
-	// });
+	fs.writeFile('./public/tracks.json', req.body.trackData2, (err) => {
+  		if (err) throw err;
+  			res.send("success");
+	});
 });
 
 app.post('/public/corpseKeeper', (req, res) => { 
