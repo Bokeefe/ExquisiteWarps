@@ -34,8 +34,8 @@
 
   </head>
   <body>
-    <div id="infoline">
-      <span>Exquisite Warps:</span><span id="titlecount"></span><span id="corpsestatus"></span>
+<div id="infoline">
+      <span>Exquisite Warps:</span><span id="corpsestatus"></span>
     </div>
       <div id="playlist" class="playlist">
         <div id="top-bar" class="playlist-top-bar">
@@ -122,18 +122,16 @@
           }
         }
 
-
-
     if (corpseKeeper.corpseNum === 0){
-      document.getElementById('corpsestatus').innerHTML="User 2";
+      document.getElementById('corpsestatus').innerHTML=" User 2";
       } else if (corpseKeeper.corpseNum === 1){
-        document.getElementById('corpsestatus').innerHTML="User 3";
+        document.getElementById('corpsestatus').innerHTML=" User 3";
       } else if (corpseKeeper.corpseNum === 2){
-        document.getElementById('corpsestatus').innerHTML="User 4";
+        document.getElementById('corpsestatus').innerHTML=" User 4";
       } else if (corpseKeeper.corpseNum === 3){
-        document.getElementById('corpsestatus').innerHTML="User 5";
+        document.getElementById('corpsestatus').innerHTML=" User 5";
       } else if (corpseKeeper.corpseNum > 4){
-        document.getElementById('corpsestatus').innerHTML="Warp Unlocked!";
+        document.getElementById('corpsestatus').innerHTML=" Warp Unlocked!";
       }
 
     function punch(){
