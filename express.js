@@ -38,9 +38,9 @@ app.get('/tracks', (req, res) => {
 });
 
 app.post('/punch', (req, res) => { 
-	fs.writeFile('./public/tracks.json', req.body.trackData2, (err) => {
+	fs.writeFile('./public/tracks.json', req.body.addOne, (err) => {
   		if (err) throw err;
-  			res.send("success");
+  			res.send(req.body.addOne);
 	});
 });
 
@@ -61,12 +61,10 @@ app.post('/delete', (req, res) => {
 	});
 });
 
-
-
 app.post('/timeStamp', (req, res) => { 
 	fs.writeFile('./public/corpseKeeper.json', req.body.update, (err) => {
   		if (err) throw err;
-  			res.send("success");
+  			res.send("timestamp save");
 	});
 });
 

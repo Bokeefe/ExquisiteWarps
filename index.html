@@ -34,73 +34,72 @@
 
   </head>
   <body>
-    <div id="playlist" class="playlist">
-      <div id="top-bar" class="playlist-top-bar">
-        <div class="playlist-toolbar">
-          <div class="btn-group">
-            <span title="restore playlist" class="btn-open btn btn-default"><i class="fa fa-folder-open"></i></span>
-            <span title="save playlist" class="btn-save btn btn-default"><i class="fa fa-floppy-o"></i></span>
-          </div>
-          <div class="btn-group">
-            <span class="btn-pause btn btn-default"><i class="fa fa-pause"></i></span>
-            <span class="btn-play btn btn-default"><i class="fa fa-play"></i></span>
-            <span class="btn-stop btn btn-default"><i class="fa fa-stop"></i></span>
-            <span title="zoom in" class="btn-zoom-in btn btn-default"><i class="fa fa-search-plus"></i></span>
-            <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
-          </div>
-          <div class="btn-group">
-            <span class="btn-state btn btn-default" data-state="select" title="select audio region"><i class="fa fa-italic"></i></span>
-            <span class="btn-state btn btn-default" data-state="shift" title="shift audio in time"><i class="fa fa-arrows-h"></i></span>
-          </div>
-            <!--<span class="btn-state btn btn-default" data-state="fadein" title="set audio fade in"><i class="fa fa-long-arrow-left"></i></span>
-            <span class="btn-state btn btn-default" data-state="fadeout" title="set audio fade out"><i class="fa fa-long-arrow-right"></i></span>
-          </div>
-          <div class="btn-group">
-            <span class="btn btn-default btn-fade" data-fade="logarithmic">logarithmic</span>
-            <span class="btn btn-default btn-fade" data-fade="linear">linear</span>
-            <span class="btn btn-default btn-fade" data-fade="exponential">exponential</span>
-            <span class="btn btn-default btn-fade" data-fade="sCurve">s-curve</span>
-          </div>
-          <div id="btns_audio_tools" class="btn-group">
-            <span title="keep only the selected audio region" class="btn-trim-audio btn btn-default disabled">Crop Audio Track</span>
-          </div>-->
-
-          <div class="btn-group">
-            <span title="drag in a new track" class="btn-new-track btn btn-default" class="fa fa-plus"><i class="fa fa-plus"></i> New <i class="fa fa-music" aria-hidden="true"></i></span>
-            <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last <i class="fa fa-music" aria-hidden="true"></i></span>
-          </div>
-          <div class="btn-group">
-           <span title="test" class="btn-test btn btn-default" id="test"><i class="fa fa-plus" aria-hidden="true"></i></span>
-          <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder"><i class="fa fa-floppy-o" aria-hidden="true"></i> & <i class="fa fa-paper-plane" aria-hidden="true"></i>  </span>
-          </div>
-
-      </div>
-      <div class="playlist-time-scale"></div>
-      <div class="playlist-tracks"></div>
-      <!--<div class="playlist-bottom-bar">
-        <form class="form-inline">
-          <select class="time-format form-control">
-            <option value="seconds">seconds</option>
-            <option value="thousandths">thousandths</option>
-            <option value="hh:mm:ss">hh:mm:ss</option>
-            <option value="hh:mm:ss.u">hh:mm:ss + tenths</option>
-            <option value="hh:mm:ss.uu">hh:mm:ss + hundredths</option>
-            <option value="hh:mm:ss.uuu">hh:mm:ss + milliseconds</option>
-          </select>
-          <input type="text" class="audio-start input-small form-control">
-          <input type="text" class="audio-end input-small form-control">
-          <label class="audio-pos">00:00:00.0</label>
-        </form>
-      </div>
+    <div id="infoline">
+      <span>Exquisite Warps:</span><span id="titlecount"></span><span id="corpsestatus"></span>
     </div>
-    -->
+      <div id="playlist" class="playlist">
+        <div id="top-bar" class="playlist-top-bar">
+          <div class="playlist-toolbar">
+            <div class="btn-group">
+              <span title="restore playlist" class="btn-open btn btn-default"><i class="fa fa-folder-open"></i></span>
+              <span title="save playlist" class="btn-save btn btn-default"><i class="fa fa-floppy-o"></i></span>
+            </div>
+            <div class="btn-group">
+              <span class="btn-pause btn btn-default"><i class="fa fa-pause"></i></span>
+              <span class="btn-play btn btn-default"><i class="fa fa-play"></i></span>
+              <span class="btn-stop btn btn-default"><i class="fa fa-stop"></i></span>
+              <span title="zoom in" class="btn-zoom-in btn btn-default"><i class="fa fa-search-plus"></i></span>
+              <span title="zoom out" class="btn-zoom-out btn btn-default"><i class="fa fa-search-minus"></i></span>
+            </div>
+            <div class="btn-group">
+              <span class="btn-state btn btn-default" data-state="select" title="select audio region"><i class="fa fa-italic"></i></span>
+              <span class="btn-state btn btn-default" data-state="shift" title="shift audio in time"><i class="fa fa-arrows-h"></i></span>
+            </div>
+              <!--<span class="btn-state btn btn-default" data-state="fadein" title="set audio fade in"><i class="fa fa-long-arrow-left"></i></span>
+              <span class="btn-state btn btn-default" data-state="fadeout" title="set audio fade out"><i class="fa fa-long-arrow-right"></i></span>
+            </div>
+            <div class="btn-group">
+              <span class="btn btn-default btn-fade" data-fade="logarithmic">logarithmic</span>
+              <span class="btn btn-default btn-fade" data-fade="linear">linear</span>
+              <span class="btn btn-default btn-fade" data-fade="exponential">exponential</span>
+              <span class="btn btn-default btn-fade" data-fade="sCurve">s-curve</span>
+            </div>
+            <div id="btns_audio_tools" class="btn-group">
+              <span title="keep only the selected audio region" class="btn-trim-audio btn btn-default disabled">Crop Audio Track</span>
+            </div>-->
+
+            <div class="btn-group">
+              <span title="delete last track" class="btn-delete-track btn btn-default" id="delete"><i class="fa fa-times"></i> Last <i class="fa fa-music" aria-hidden="true"></i></span>
+              <span title="drag in a new track" class="btn-new-track btn btn-default" class="fa fa-plus"><i class="fa fa-plus"></i> New <i class="fa fa-music" aria-hidden="true"></i></span>
+              <span title="saveOrder" class="btn-saveOrder btn btn-default" id="saveOrder"><i class="fa fa-floppy-o" aria-hidden="true"></i> & <i class="fa fa-paper-plane" aria-hidden="true"></i>  </span>
+            </div>
+        
+        </div>
+        <div class="playlist-time-scale"></div>
+        <div class="playlist-tracks"></div>
+        <!--<div class="playlist-bottom-bar">
+          <form class="form-inline">
+            <select class="time-format form-control">
+              <option value="seconds">seconds</option>
+              <option value="thousandths">thousandths</option>
+              <option value="hh:mm:ss">hh:mm:ss</option>
+              <option value="hh:mm:ss.u">hh:mm:ss + tenths</option>
+              <option value="hh:mm:ss.uu">hh:mm:ss + hundredths</option>
+              <option value="hh:mm:ss.uuu">hh:mm:ss + milliseconds</option>
+            </select>
+            <input type="text" class="audio-start input-small form-control">
+            <input type="text" class="audio-end input-small form-control">
+            <label class="audio-pos">00:00:00.0</label>
+          </form>
+        </div>
+      </div>
+      -->
 
 
     <script type="text/javascript">
   (function(){
     var corpseKeeper;
-    var timeStamp = 0; 
-    var isFinished = false;
+    var isFinished;
 
     $.get(
       "./corpseKeeper.json",
@@ -108,9 +107,8 @@
       $( ".result" ).html(res);
       corpseKeeper = res;
       if(corpseKeeper.corpseNum >= corpseKeeper.corpseSet){
-        isFinished = !isFinished;
+        isFinished = true;
       }
-
     $.get(
       "./tracks.json",
       function( res ) {
@@ -124,10 +122,23 @@
           }
         }
 
+
+
+    if (corpseKeeper.corpseNum === 0){
+      document.getElementById('corpsestatus').innerHTML="User 2";
+      } else if (corpseKeeper.corpseNum === 1){
+        document.getElementById('corpsestatus').innerHTML="User 3";
+      } else if (corpseKeeper.corpseNum === 2){
+        document.getElementById('corpsestatus').innerHTML="User 4";
+      } else if (corpseKeeper.corpseNum === 3){
+        document.getElementById('corpsestatus').innerHTML="User 5";
+      } else if (corpseKeeper.corpseNum > 4){
+        document.getElementById('corpsestatus').innerHTML="Warp Unlocked!";
+      }
+
     function punch(){
       var trackData = playlistEditor.getInfo();
       var trackData2 = playlistEditor.getInfo();
-      console.log(trackData);
       $.get(
         "./corpseKeeper.json",
         function( res ) {
@@ -148,26 +159,34 @@
       });
       function subTime(timeSub){
         for(var i in trackData){
-          trackData2[i].start=trackData[i].start-timeSub;
-          trackData2[i].end=trackData[i].end-timeSub;
+          trackData2[i.length].start=trackData[i.length].start-timeSub;
+          trackData2[i.length].end=trackData[i.length].end-timeSub;
           }  
       }
-      subTime(timeSub);
-      trackData2 = JSON.stringify(trackData2);
+      //subTime(timeSub);
+
+      $.get(
+        "./tracks.json",
+        function( res ) {
+        allTracks = res;
+        var newTrack;
+        for(var i in trackData2){
+          newTrack =  trackData2[i];
+        }
+        allTracks.push(newTrack);
+        var addOne = JSON.stringify(allTracks);
+        console.log(addOne);
+        
       $.post("/punch",
-        {trackData2:trackData2},
+        {addOne:addOne},
         function(data,status){
-            console.log(status);
+          //location.reload();
         });
       });
+      });   
     }
-
     $('#saveOrder').click(punch);
 
-    function test(){
-
-    }
-    $('#test').click(test);
 
     function deleteTrack(){
       var trackDel = [];
@@ -221,7 +240,6 @@
         },
         'json');
          });
-
     })();
 
     </script>
