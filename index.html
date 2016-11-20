@@ -35,7 +35,7 @@
   </head>
   <body>
 <div id="infoline">
-      <span id="corpsetitle">Exquisite Warps:</span><span id="corpsestatus"></span>
+      <span id="corpsetitle">Exquisite Warps </span><span id="corpsestatus"></span>
     </div>
       <div id="playlist" class="playlist">
         <div id="top-bar" class="playlist-top-bar">
@@ -104,35 +104,40 @@
     $.get(
       "./corpseKeeper.json",
       function( res ) {
-      $( ".result" ).html(res);
-      corpseKeeper = res;
-      if(corpseKeeper.corpseNum >= corpseKeeper.corpseSet){
-        isFinished = true;
-      }
-    $.get(
-      "./tracks.json",
-      function( res ) {
-        $( ".result" ).html( res );
-        var tracks = res;
-        for(var i in res){
-          if(isFinished) {
-            tracks = res;
-          } else {
-            tracks = [res[i]];
-          }
+        $( ".result" ).html(res);
+        corpseKeeper = res;
+        if(corpseKeeper.corpseNum >= corpseKeeper.corpseSet){
+          isFinished = true;
         }
 
-    if (corpseKeeper.corpseNum === 0){
-      document.getElementById('corpsestatus').innerHTML=" User 2";
-      } else if (corpseKeeper.corpseNum === 1){
-        document.getElementById('corpsestatus').innerHTML=" User 3";
-      } else if (corpseKeeper.corpseNum === 2){
-        document.getElementById('corpsestatus').innerHTML=" User 4";
-      } else if (corpseKeeper.corpseNum === 3){
-        document.getElementById('corpsestatus').innerHTML=" User 5";
-      } else if (corpseKeeper.corpseNum > 4){
-        document.getElementById('corpsestatus').innerHTML=" Warp Unlocked!";
-      }
+        $.get(
+          "./tracks.json",
+          function( res ) {
+            $( ".result" ).html( res );
+            var tracks = res;
+            for(var i in res){
+              if(i > 4) {
+                tracks = res;
+              } else {
+                tracks = [res[i]];
+              }
+            }
+var corpseNum = corpseKeeper.corpseNum;
+
+function userstatus (corpseNum){
+            if (corpseNum === 0){
+              document.getElementById('corpsestatus').innerHTML=" User 1: Ringo";
+              } else if (corpseNum === 1){
+                document.getElementById('corpsestatus').innerHTML=" User 2: John";
+              } else if (corpseNum === 2){
+                document.getElementById('corpsestatus').innerHTML=" User 3: Paul";
+              } else if (corpseNum === 3){
+                document.getElementById('corpsestatus').innerHTML=" User 4: George";
+              } else if (corpseNum > 3){
+                document.getElementById('corpsestatus').innerHTML=" Warp Unlocked!";
+              }
+            }
+            userstatus(corpseNum);
 
     function punch(){
       var trackData = playlistEditor.getInfo();
