@@ -5,21 +5,23 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8000;
 
-var uristring = 
-  process.env.MONGODB_URI || 
-  'mongodb://<dbuser>:<dbpassword>@ds127988.mlab.com:27988/heroku_1ttwgfff';
-
+mongoose.connect("mongodb://localhost");
 mongoose.Promise = global.Promise; 
+// var uristring = 
+//   process.env.MONGODB_URI || 
+//   'mongodb://<dbuser>:<dbpassword>@ds127988.mlab.com:27988/heroku_1ttwgfff';
 
-mongoose.connect(uristring, function (err, res) {
-  if (err) { 
-    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-    console.log ('Succeeded connected to: ' + uristring);
-  }
-});
+
+
+// mongoose.connect(uristring, function (err, res) {
+//   if (err) { 
+//     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+//   } else {
+//     console.log ('Succeeded connected to: ' + uristring);
+//   }
+// });
 
 
 app.use(bodyParser.urlencoded({extended: false}));
