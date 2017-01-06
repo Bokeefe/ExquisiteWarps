@@ -14,18 +14,24 @@
 
   </head>
   <body>
+  <div id="main" class="container">
     <div id="logbox" class="logbox">
       <div id="top-bar" class="logbox-top-bar">
+        <div id="xusername" class="alert alert-danger" style="visibility: hidden;">
+          <strong>Hey!</strong> Invalid Username or Password
+        </div>
         <form class="form-horizontal">
             <div class="form-group">
-              <label for="usr">Name:</label>
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <label for="usr">Group/Callsign/Name:</label>
               <input type="text" class="form-control" id="usr">
             </div>
             <div class="form-group">
               <label for="pwd">Password:</label>
               <input type="password" class="form-control" id="pwd">
-
-
             </div>
             <div class="form-group">
               <label for="title" value="Name this">Title:</label>
@@ -46,21 +52,54 @@
         </form>
       </div>
     </div>
+  </div>
 
     <script type="text/javascript">
-    $("#submit").click(function(){
-      var login = {
-        "user": $("usr").val(),
-        "password": $("pwd").val(),
-        "title":$("title").val(),
-        "corpsenum": $("corpsenum").val(),
-        "instructions":$("instructions").val()};
-      // $.post("/login",
-      //   function() {
-          console.log(login);
-        // });
-    });
+    // $("#submit").click(function(){
+    //   var login = {
+    //     "user": $("usr").val(),
+    //     "password": $("pwd").val(),
+    //     "title":$("title").val(),
+    //     "corpsenum": $("corpsenum").val(),
+    //     "instructions":$("instructions").val()};
+    //   // $.post("/login",
+    //   //   function() {
+    //       console.log(login);
+    //     // });
+    // });
   
+   $("#submit").click(function(){
+        var name =  $("#name").val();
+        var pw = $("#pwd").val();
+    $.post("/login", { //post to the register api
+      name: name,
+      password: pw
+    }, function(response){
+      if(response.status === "success") { //if logged in
+      window.location = '/index.html';//takes you to homepage
+      } else {
+          console.log(response.status);
+          $("#xusername").show();
+      }
+    });
+    });
+
+    $("#submit2").click(function(){
+        var name =  $("#name2").val();
+        var pw = $("#pwd2").val();
+        var email = $("#email2").val();
+    $.post("/register", { //post to the register api
+      name: name,
+      password: pw,
+      email: email
+    }, function(response){
+      if(response.status === "success") { //if logged in
+      window.location = '/';
+         } else {
+            $("#xusername").show();
+         }
+       });
+    });
 //event.preventDefault();
     </script>    <script>
     </script>
