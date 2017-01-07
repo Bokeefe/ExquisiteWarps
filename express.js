@@ -32,8 +32,8 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/login.html'); 
-
+	res.sendFile(__dirname + '/public/login.html');
+	console.log("here");
 });
 
 app.get("/username",(req,res)=> {
