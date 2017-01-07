@@ -1,7 +1,15 @@
   (function(){
+
+    $.get("/username", function(data, status){
+      if (status === "success"){
+        $('#corpseuser').html(data);
+      } else {
+        $('#corpseuser').html("this is broken");
+      }
+    });
+
     var corpseKeeper;
     var isFinished;
-
     $.get(
       "./corpseKeeper.json",
       function( res ) {
