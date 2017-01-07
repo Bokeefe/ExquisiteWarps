@@ -6,14 +6,12 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 8000;
-
+var User = require('./UserSchema.js')(mongoose);
 mongoose.connect("mongodb://localhost");
 mongoose.Promise = global.Promise; 
 // var uristring = 
 //   process.env.MONGODB_URI || 
 //   'mongodb://<dbuser>:<dbpassword>@ds127988.mlab.com:27988/heroku_1ttwgfff';
-
-
 
 // mongoose.connect(uristring, function (err, res) {
 //   if (err) { 
@@ -33,9 +31,70 @@ app.use(session({
 	saveUninitialized: false
 }));
 
+app.get("/username",(req,res)=> {
+	res.send(req.session.name);
+});
+
+app.post('/login', (req, res) => {//login page
+	if (!req.body.name || !req.body.password) {//if no name or password provided send error
+		// res.status(401);
+		console.info('Invalid Login', req.body.name);
+		res.send({status: 'error', message: 'user/pass not entered'});
+		return;
+	}
+	User.find({name: req.body.name}, (err, user) => {//search for provided name and password in user database
+		if (user.length === 0) {
+			// res.status(401);
+			res.send({status: 'invalid', message: 'invalid username/passord'});
+		} else if (user[0].password !== req.body.password) {
+			// res.status(401);
+			res.send({status: 'invalid', message: 'invalid username/password'});
+		} else {//if user is found set session name
+			req.session.name = user[0].name;
+			res.send({status:"success"});
+		}
+	});
+});
+
+
+app.post('/register', (req, res) => {//api to register a new user
+	// find this email in the database and see if it already exists
+	User.find({name: req.body.name}, (err, data) => {
+		if (data.length === 0) {      // if the user doesn't exist
+			var newUser = new User({
+				name: req.body.name,
+				email: req.body.email,
+				password: req.body.password
+			});
+
+			newUser.save((err) => { // save the newUser object to the database
+				if (err) {
+					res.status(500);
+					console.error(err);
+					res.send({status: 'Error', message: 'unable to register user:' + err});
+				}
+				res.send({status: 'success', message: 'user added successfully'});
+			});
+		} else if (err) { // send back an error if there's a problem
+			res.status(500);
+			console.error(err);
+			res.send({status: 'Error', message: 'server error: ' + err});
+		} else {
+			res.send({status: 'Error', message: 'user already exists'}); // otherwise the user already exists
+		}
+	});
+});
+
+
+app.post('/logout', (req, res) => {//logout api
+	console.log(req.session.name);
+	delete req.session.name;
+	res.send({status: 'logout', message: 'succesfully logged out'});
+});
+
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/index.html'); 
+	res.sendFile(__dirname + '/login.html'); 
 
 });
 

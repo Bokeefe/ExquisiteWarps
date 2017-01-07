@@ -6,54 +6,90 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link href="../css/login.css" rel="stylesheet" />
     <script
   src="https://code.jquery.com/jquery-3.1.1.js"
   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
   crossorigin="anonymous"></script>
+    <style type="text/css">
+      html, body {
 
+  margin: 5%;
+  background-color: #EBDEF0;
+  font-family: Century Gothic, sans-serif;
+}
+
+.logbox {
+  margin: 2em 0 0 0;
+}
+
+.logbox-top-bar {
+  border-radius: 50px;
+  background-color: purple;
+  margin: 1em 0;
+}
+
+.form-horizontal{
+  padding: 50px;
+}
+.btn {
+  background-color: #EBDEF0;
+}
+    </style>
   </head>
   <body>
-  <div id="main" class="container">
-    <div id="logbox" class="logbox">
-      <div id="top-bar" class="logbox-top-bar">
-        <div id="xusername" class="alert alert-danger" style="visibility: hidden;">
-          <strong>Hey!</strong> Invalid Username or Password
-        </div>
-        <form class="form-horizontal">
-            <div class="form-group">
-              <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" id="email">
+    <div class="container">
+      <h1>Login</h1>
+        <div id="logbox" class="logbox">
+          <div id="top-bar" class="logbox-top-bar">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label for="usr">Username:</label>
+                  <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" id="pwd">
+                </div>
+                  <button id="submit" type="button" class="btn btn-default btn-block">Submit</button>
+                </div>
               </div>
-              <label for="usr">Group/Callsign/Name:</label>
-              <input type="text" class="form-control" id="usr">
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <input type="password" class="form-control" id="pwd">
-            </div>
-            <div class="form-group">
-              <label for="title" value="Name this">Title:</label>
-              <input type="text" class="form-control" id="title">
-              <label for="corpselabel">Number of Contributors 2 tha Corpse:</label>
-              <select class="form-control" id="corpsenum">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-              <label for="instructionslabel">Instructions:</label>
-              <textarea class="form-control" rows="5" id="instructions" value="Let other contributors know the theme/goal/vibe of this corpse"></textarea>
-              <button id="submit" type="button" class="btn btn-default btn-block">Submit</button>
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
-  </div>
+      <div id="xusername" class="alert alert-danger" style="visibility: hidden;">
+        <strong>Hey!</strong> Invalid Username or Password
+      </div>
+      <div class="container">
+        <h1>Register</h1>
+            <div id="logbox" class="logbox">
+          <div id="top-bar" class="logbox-top-bar">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label for="usr">Username:</label>
+                  <input type="text" class="form-control" id="name2">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="text" class="form-control" id="email2">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" id="pwd2">
+                </div>
+                <div class="form-group">
+                  <button id="submit2" type="button" class="btn btn-default btn-block">Submit</button>
+                </div>
+                <div class="form-group">
+                  <button id="tester" type="button" class="btn btn-default btn-block">XPLODE!!</button>
+                </div>
 
+              </div>        
+            </form>
+          </div>
+        </div>
+      </div>
+    </body>
     <script type="text/javascript">
     // $("#submit").click(function(){
     //   var login = {
@@ -67,21 +103,29 @@
     //       console.log(login);
     //     // });
     // });
-  
-   $("#submit").click(function(){
-        var name =  $("#name").val();
-        var pw = $("#pwd").val();
-    $.post("/login", { //post to the register api
-      name: name,
-      password: pw
-    }, function(response){
-      if(response.status === "success") { //if logged in
-      window.location = '/index.html';//takes you to homepage
-      } else {
-          console.log(response.status);
-          $("#xusername").show();
-      }
+
+    $("#tester").click(function(){
+      var xuser = document.getElementById("xusername");
+      xuser.style.visibility='visible';
+      console.log("bam!");
     });
+
+   $("#submit").click(function(){
+          var name =  $("#name").val();
+          var pw = $("#pwd").val();
+      $.post("/login", { //post to the register api
+        name: name,
+        password: pw
+      }, function(response){
+        if(response.status === "success") { //if logged in
+          console.log("broke here");
+        window.location = './index.html';
+        } else {
+            console.log(response.status);
+            var xuser = document.getElementById("xusername");
+            xuser.style.visibility='visible';
+        }
+      });
     });
 
     $("#submit2").click(function(){
@@ -96,10 +140,14 @@
       if(response.status === "success") { //if logged in
       window.location = '/';
          } else {
-            $("#xusername").show();
+            var xuser = document.getElementById("xusername");
+            xuser.style.visibility='visible';
+            console.log(response.status);
+            console.log(response.message);
          }
        });
     });
+
 //event.preventDefault();
     </script>    <script>
     </script>
