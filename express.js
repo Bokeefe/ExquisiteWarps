@@ -31,6 +31,11 @@ app.use(session({
 	saveUninitialized: false
 }));
 
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/login.html'); 
+
+});
+
 app.get("/username",(req,res)=> {
 	res.send(req.session.name);
 });
@@ -90,12 +95,6 @@ app.post('/logout', (req, res) => {//logout api
 	console.log(req.session.name);
 	delete req.session.name;
 	res.send({status: 'logout', message: 'succesfully logged out'});
-});
-
-
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/login.html'); 
-
 });
 
 app.get('/png',(req,res) => {
