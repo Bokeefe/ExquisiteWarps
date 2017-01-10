@@ -14,4 +14,3 @@ module.exports = (mongoose) => {
 
    return Track;
 };
-

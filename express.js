@@ -33,7 +33,6 @@ app.use(session({
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/public/login.html');
-	console.log("here");
 });
 
 app.get("/username",(req,res)=> {
@@ -105,9 +104,9 @@ app.get('/login', (req, res) => {
 	res.sendFile(__dirname + '/login.html'); 
 });
 
-app.get('/tracks', (req, res) => {
-	res.sendFile(__dirname + '/public/tracks.json');
-});
+// app.get('/tracks', (req, res) => {
+// 	res.sendFile(__dirname + '/public/tracks.json');
+// });
 
 app.post('/punch', (req, res) => { 
 	fs.writeFile('./public/tracks.json', req.body.addOne, (err) => {

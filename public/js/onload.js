@@ -1,5 +1,12 @@
   (function(){
 
+function pop () {
+        $('#corpsename').html("Demo");
+        $('#instructions').html("do Different things");
+        $('#corpsecount').html("3");
+        $('#corpsenum').html("5");
+        $('#global').html("number");
+}
     $.get("/username", function(data, status){
       if (status === "success"){
         $('#corpseuser').html(data);
@@ -8,6 +15,20 @@
       }
     });
 
+
+    // $.get("/corpsekeeper", function(data, status){
+    //   if (status === "success"){
+    //     $('#corpsename').html("Demo");
+    //     $('#instructions').html("do Different things");
+    //     $('#corpsecount').html("3");
+    //     $('#corpsenum').html("5");
+    //     $('#global').html("number");
+    //     console.log(data);
+    //   } else {
+    //     $('#instructions').html("this is broken");
+    //   }
+    // });
+
     var corpseKeeper;
     var isFinished;
     $.get(
@@ -15,9 +36,14 @@
       function( res ) {
         $( ".result" ).html(res);
         corpseKeeper = res;
+        $('#corpsename').html(corpseKeeper.name);
+        $('#instructions').html(corpseKeeper.instructions);
+        $('#corpsecount').html(corpseKeeper.corpseNum);
+        $('#corpsenum').html(corpseKeeper.corpseSet);
+        $('#global').html(corpseKeeper.timeStamp);
         if(corpseKeeper.corpseNum >= corpseKeeper.corpseSet){
           isFinished = true;
-        }
+    }
 
         $.get(
           "./tracks.json",
@@ -30,25 +56,7 @@
               } else {
                 tracks = [res[i]];
               }
-            }
-var corpseNum = corpseKeeper.corpseNum;
-
-function userstatus (corpseNum){
-            if (corpseNum === 0){
-              document.getElementById('corpsestatus').innerHTML=" User 1: Ringo";
-              } else if (corpseNum === 1){
-                document.getElementById('corpsestatus').innerHTML=" User 2: John";
-              } else if (corpseNum === 2){
-                document.getElementById('corpsestatus').innerHTML=" User 3: Paul";
-              } else if (corpseNum === 3){
-                document.getElementById('corpsestatus').innerHTML=" User 4: George";
-              } else if (corpseNum === 4){
-                document.getElementById('corpsestatus').innerHTML=" User 5: Almost done";
-              } else if (corpseNum > 4){
-                document.getElementById('corpsestatus').innerHTML=" Warp Unlocked!";
-              }
-            }
-            userstatus(corpseNum);
+        }
 
     function punch(){
       var trackData = playlistEditor.getInfo();
@@ -93,10 +101,10 @@ function userstatus (corpseNum){
         
       $.post("/punch",
         {addOne:addOne},
-        function(data,status){
-          //location.reload();
+          function(data,status){
+            //location.reload();
+          });
         });
-      });
       });   
     }
     $('#saveOrder').click(punch);
